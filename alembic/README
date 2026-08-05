@@ -1,0 +1,3 @@
+Alembic is initialized without an empty baseline revision. Future SQLAlchemy models imported
+into Base.metadata will be detected by autogeneration. The database URL is loaded from Settings.
+
