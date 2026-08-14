@@ -82,5 +82,18 @@ The reusable timestamp mixin uses UTC-aware timestamps. Entity identifier strate
 
 ## Security and deferred scope
 
-Never expose `.env`, database URLs, authorization headers, tracebacks, or personal data. Use least-privilege database credentials and production-specific origins/settings. Authentication, JWT, users/roles, property persistence and APIs, uploads, messaging, jobs, caching, payments, cloud deployment, and AI are deferred to later sprints.
+Never expose `.env`, database URLs, authorization headers, tracebacks, or personal data. Use least-privilege database credentials and production-specific origins/settings. Property APIs, uploads, messaging, jobs, caching, payments, cloud deployment, and AI remain deferred.
 
+## Sprint 5 authentication
+
+Authentication uses `users`, `roles`, `user_roles`, and `refresh_tokens`. Passwords are Argon2 hashes. HS256 access JWTs last 15 minutes by default; refresh JWTs last seven days, are stored only as SHA-256 hashes, rotate on refresh, and are revoked by logout. Configure `YARDS_JWT_SECRET_KEY` with a random value of at least 32 characters.
+
+```powershell
+python -m alembic upgrade head
+python -m app.utilities.seed_roles
+$env:YARDS_ADMIN_EMAIL="admin@example.test"
+$env:YARDS_ADMIN_PASSWORD="choose-a-local-password"
+python -m app.utilities.create_admin
+```
+
+No admin credential is committed. The camelCase JSON endpoints are `POST /api/v1/auth/register`, `/login`, `/refresh`, `/logout`, and `GET /api/v1/auth/me`. Public `ADMIN` registration is rejected. Current limitations include no email/mobile verification, password reset, MFA, OAuth, access-token denylist, or HttpOnly refresh cookie.

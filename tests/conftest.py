@@ -9,6 +9,7 @@ os.environ.setdefault(
     "YARDS_DATABASE_URL", "mysql+pymysql://test:test@localhost:3306/fifty_one_yards"
 )
 os.environ.setdefault("YARDS_ENVIRONMENT", "testing")
+os.environ.setdefault("YARDS_JWT_SECRET_KEY", "test-secret-key-with-at-least-32-characters")
 
 from app.api.v1.endpoints.health import get_health_service  # noqa: E402
 from app.core.config import Settings  # noqa: E402
@@ -27,6 +28,7 @@ def settings() -> Settings:
         frontend_origins=["http://localhost:4200"],
         database_url="mysql+pymysql://test:test@localhost:3306/fifty_one_yards",
         log_level="WARNING",
+        jwt_secret_key="test-secret-key-with-at-least-32-characters",
     )
 
 

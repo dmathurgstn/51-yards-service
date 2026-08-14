@@ -26,6 +26,10 @@ class Settings(BaseSettings):
     database_url: str = Field(min_length=1)
     database_echo: bool = False
     log_level: str = "INFO"
+    jwt_secret_key: str = Field(min_length=32)
+    jwt_algorithm: Literal["HS256"] = "HS256"
+    access_token_expire_minutes: int = Field(default=15, ge=1, le=1440)
+    refresh_token_expire_days: int = Field(default=7, ge=1, le=90)
 
     @field_validator("api_v1_prefix")
     @classmethod

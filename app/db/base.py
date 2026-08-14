@@ -9,7 +9,7 @@ def utc_now() -> datetime:
 
 
 class Base(DeclarativeBase):
-    """Declarative metadata root. Sprint 4 intentionally defines no physical tables."""
+    """Declarative metadata root."""
 
 
 class TimestampMixin:
