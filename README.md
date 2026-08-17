@@ -97,3 +97,6 @@ python -m app.utilities.create_admin
 ```
 
 No admin credential is committed. The camelCase JSON endpoints are `POST /api/v1/auth/register`, `/login`, `/refresh`, `/logout`, and `GET /api/v1/auth/me`. Public `ADMIN` registration is rejected. Current limitations include no email/mobile verification, password reset, MFA, OAuth, access-token denylist, or HttpOnly refresh cookie.
+# 51 Yards Services
+
+Sprint 6 property-domain documentation is available at [docs/property-domain.md](docs/property-domain.md).
